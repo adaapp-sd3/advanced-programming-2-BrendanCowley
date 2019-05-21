@@ -8,6 +8,7 @@ class Chicken extends Animal {
   eats: string = "corn"
   hunger: number = 5
   farm: Farm
+  timeHungry: number = 0
 
   constructor(farm: Farm) {
     super()
@@ -51,6 +52,7 @@ class Chicken extends Animal {
 
   public draw(): any {
 
+    this.checkIfDead(this.hunger)
     this.constrainItem()
     this.doSomethingOccasionally(() => this.eatCorn())
     this.stopForFarmer()

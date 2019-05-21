@@ -17,6 +17,8 @@ class Market extends Drawable {
   lambPrice: number = 20
   greenGasPrice: number = 10
 
+  greenGasEquipmentPrice: number = 10000
+  pettingFarmEquipmentPrice: number = 10000
 
   solarPanelPrice: number = 10000
 

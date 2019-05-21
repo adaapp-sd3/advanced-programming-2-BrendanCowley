@@ -26,3 +26,8 @@
 .App-link {
   color: #61dafb;
 }
+
+.MarketDashboard {
+  overflow: scroll;
+  height: 50vh;
+}

@@ -8,6 +8,8 @@ class Field extends Drawable {
   contents: any[]
   name: string
   crops: any[]
+  isPettingFarm: boolean = false
+  isGreenGasPlant: boolean = false
 
   constructor(
     xPos: number,
@@ -37,6 +39,14 @@ class Field extends Drawable {
     for (var item of this.contents) {
       item.draw()
     }
+  }
+
+  convertToPettingFarm(){
+    this.isPettingFarm = true
+  }
+
+  convertToGreenGasPlant(){
+    this.isGreenGasPlant = true
   }
 
   plant(x: number, y: number, farm: any) {

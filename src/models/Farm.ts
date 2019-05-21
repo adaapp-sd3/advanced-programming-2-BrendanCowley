@@ -16,7 +16,12 @@ class Farm extends Drawable {
   eggs: any
   corn: any
   bread: any
+  greenGas: any
   solarPanels: any
+  availableLand: any
+  greenGasEquipment: any
+  pettingFarmEquipment: any
+  weather: any
 
   constructor(
     cows: any = {
@@ -58,6 +63,23 @@ class Farm extends Drawable {
       name: "Grass seeds",
       total: 0,
       unit: "bunches"
+    },
+    availableLand: any = {
+      name: "Available Land",
+      total: 0,
+      unit: "fields"
+    },
+    greenGasEquipment: any = {
+      name: "Green Gas Equipment",
+      total: 0
+    },
+    pettingFarmEquipment: any = {
+      name: "Petting Farm Equipment",
+      total: 0
+    },
+    greenGas: any = {
+      name: "Green Gas",
+      total: 0
     }
   ) {
     super()
@@ -69,6 +91,10 @@ class Farm extends Drawable {
     this.seeds = seeds
     this.eggs = eggs
     this.wool = wool
+    this.availableLand = availableLand
+    this. greenGasEquipment = greenGasEquipment
+    this. pettingFarmEquipment = pettingFarmEquipment
+    this.greenGas = greenGas
   }
 
   public preload() {

@@ -9,7 +9,6 @@ class Sheep extends Animal {
   hunger: number = 5
   farm: Farm
   timeHungry: number = 0
-  alive: boolean = true
 
   constructor(farm: Farm) {
     super()
@@ -53,18 +52,10 @@ class Sheep extends Animal {
 
   public draw(): any {
 
+    this.checkIfDead(this.hunger)
     this.constrainItem()
     this.doSomethingOccasionally(() => this.eatStraw())
     this.stopForFarmer()
-    if(this.hunger === 5 && this.timeHungry !== 0){
-      this.timeHungry = this.p5.millis()
-    }
-    if(this.p5.millis() - this.timeHungry >= 3 * 60 * 1000 && this.timeHungry !== 0){
-      this.alive = false
-    }
-    if(this.hunger < 5){
-      this.timeHungry = 0
-    }
   }
 }
 

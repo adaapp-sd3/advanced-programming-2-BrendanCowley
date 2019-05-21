@@ -5,25 +5,39 @@ class MarketDashboard extends Component {
 
   buyItem = item => {
     if (item === "seeds") {
-      this.props.market.currentFarmer.myFarm.seeds.total =
-        this.props.market.currentFarmer.budget *
-        this.props.market.grassSeedPrice
-      console.log(this.props.market.currentFarmer.myFarm.seeds)
-      this.props.market.currentFarmer.budget = 0
+      if(this.props.currentFarmer.budget >= this.props.market.grassSeedPrice) {
+        this.props.market.currentFarmer.myFarm.seeds.total += 1
+        console.log(this.props.market.currentFarmer.myFarm.seeds)
+        this.props.market.currentFarmer.budget -= this.props.market.grassSeedPrice
+      }
     }
     if (item === "solar panel") {
-      this.props.market.currentFarmer.myFarm.solarPanels.total =
-        this.props.market.currentFarmer.budget *
-        this.props.market.solarPanelPrice
-      console.log(this.props.market.currentFarmer.myFarm.solarPanels)
-      this.props.market.currentFarmer.budget = 0
+      if(this.props.currentFarmer.budget >= this.props.market.solarPanelPrice) {
+        this.props.market.currentFarmer.myFarm.solarPanels.total += 1
+        console.log(this.props.market.currentFarmer.myFarm.solarPanels)
+        this.props.market.currentFarmer.budget -= this.props.market.solarPanelPrice
+      }
     }
     if (item === "land") {
-      this.props.market.currentFarmer.myFarm.fields.push(new Field(475, 450, 300, 125))
-        // this.props.market.currentFarmer.budget *
-        // this.props.market.landPrice
-      console.log(this.props.market.currentFarmer.myFarm.fields)
-      this.props.market.currentFarmer.budget = 0
+      if(this.props.currentFarmer.budget >= this.props.market.landPrice) {
+        this.props.market.currentFarmer.myFarm.availableLand.total += 1
+        console.log(this.props.market.currentFarmer.myFarm.availableLand)
+        this.props.market.currentFarmer.budget -= this.props.market.landPrice
+      }
+    }
+    if (item === "green gas equipment") {
+      if(this.props.currentFarmer.budget >= this.props.market.greenGasEquipmentPrice) {
+        this.props.market.currentFarmer.myFarm.greenGasEquipment.total += 1
+        console.log(this.props.market.currentFarmer.myFarm.greenGasEquipment)
+        this.props.market.currentFarmer.budget -= this.props.market.greenGasEquipmentPrice
+      }
+    }
+    if (item === "petting farm equipment") {
+      if(this.props.currentFarmer.budget >= this.props.market.pettingFarmEquipmentPrice) {
+        this.props.market.currentFarmer.myFarm.pettingFarmEquipment.total += 1
+        console.log(this.props.market.currentFarmer.myFarm.pettingFarmEquipment)
+        this.props.market.currentFarmer.budget -= this.props.market.pettingFarmEquipmentPrice
+      }
     }
   }
 
@@ -36,11 +50,9 @@ class MarketDashboard extends Component {
       this.props.market.currentFarmer.myFarm.milk.total = 0
     }
     if (item === "beef") {
-      this.props.market.currentFarmer.budget +=
-        this.props.market.currentFarmer.myFarm.cows.total *
-        this.props.market.beefPrice
+      this.props.market.currentFarmer.budget += this.props.market.beefPrice
       console.log(this.props.market.currentFarmer.myFarm.cows)
-      this.props.market.currentFarmer.myFarm.cows.total = 0
+      this.props.market.currentFarmer.myFarm.cows.total -= 1
     }
     if (item === "egg") {
       this.props.market.currentFarmer.budget +=
@@ -50,11 +62,9 @@ class MarketDashboard extends Component {
       this.props.market.currentFarmer.myFarm.eggs.total = 0
     }
     if (item === "chicken") {
-      this.props.market.currentFarmer.budget +=
-        this.props.market.currentFarmer.myFarm.chickens.total *
-        this.props.market.chickenPrice
+      this.props.market.currentFarmer.budget += this.props.market.chickenPrice
       console.log(this.props.market.currentFarmer.myFarm.chickens)
-      this.props.market.currentFarmer.myFarm.chickens.total = 0
+      this.props.market.currentFarmer.myFarm.chickens.total -= 1
     }
     if (item === "wool") {
       this.props.market.currentFarmer.budget +=
@@ -64,11 +74,16 @@ class MarketDashboard extends Component {
       this.props.market.currentFarmer.myFarm.wool.total = 0
     }
     if (item === "lamb") {
-      this.props.market.currentFarmer.budget +=
-        this.props.market.currentFarmer.myFarm.sheep.total *
-        this.props.market.lambPrice
+      this.props.market.currentFarmer.budget += this.props.market.lambPrice
       console.log(this.props.market.currentFarmer.myFarm.sheep)
-      this.props.market.currentFarmer.myFarm.sheep.total = 0
+      this.props.market.currentFarmer.myFarm.sheep.total -= 1
+    }
+    if (item === "green gas") {
+      this.props.market.currentFarmer.budget +=
+        this.props.market.currentFarmer.myFarm.greenGas.total *
+        this.props.market.greenGasPrice
+      console.log(this.props.market.currentFarmer.myFarm.greenGas)
+      this.props.market.currentFarmer.myFarm.greenGas.total = 0
     }
   }
 
@@ -97,12 +112,18 @@ class MarketDashboard extends Component {
               Buy land for {this.props.market.landPrice}
             </button>
           </dd>
-          {/* <dt>Green gas</dt>
+          <dt>Green gas generator equipment</dt>
           <dd>
-            <button onClick={() => this.buyItem("green gas")}>
-              Buy green gas for {this.props.market.greenGasPrice}
+            <button onClick={() => this.buyItem("green gas equipment")}>
+              Buy green gas equipment for {this.props.market.greenGasEquipmentPrice}
             </button>
-          </dd> */}
+          </dd>
+          <dt>Petting farm equipmnt</dt>
+          <dd>
+            <button onClick={() => this.buyItem("petting farm equipment")}>
+              Buy green gas for {this.props.market.pettingFarmEquipmentPrice}
+            </button>
+          </dd>
         </dl>
         <h3>Sell</h3>
         <dl>
@@ -113,6 +134,26 @@ class MarketDashboard extends Component {
           <dt>Beef</dt>
           <button onClick={() => this.sellItem("beef")}>
               Sell beef for {this.props.market.beefPrice} per cow
+          </button>
+          <dt>Chicken</dt>
+          <button onClick={() => this.sellItem("chicken")}>
+              Sell chicken for {this.props.market.chickenPrice} per chicken
+          </button>
+          <dt>Eggs</dt>
+          <button onClick={() => this.sellItem("egg")}>
+              Sell eggs for {this.props.market.eggPrice} per egg
+          </button>
+          <dt>Lamb</dt>
+          <button onClick={() => this.sellItem("lamb")}>
+              Sell lamb for {this.props.market.lambPrice} per sheep
+          </button>
+          <dt>Wool</dt>
+          <button onClick={() => this.sellItem("wool")}>
+              Sell wool for {this.props.market.woolPrice} per bunch
+          </button>
+          <dt>Green Gas</dt>
+          <button onClick={() => this.sellItem("green gas")}>
+              Sell green gas for {this.props.market.greenGasPrice} per gas
           </button>
         </dl>
       </div>
