@@ -1,11 +1,11 @@
 import Animal from "../abstract/Animal"
 import Farm from "../Farm";
 
-class Cow extends Animal {
-  name: string = "Cow"
-  genus: string = "Cows"
+class Chicken extends Animal {
+  name: string = "Chicken"
+  genus: string = "Chickenii"
   imgUrl: string = "/img/twtr/1f404.png"
-  eats: string = "straw"
+  eats: string = "corn"
   hunger: number = 5
   farm: Farm
 
@@ -14,22 +14,22 @@ class Cow extends Animal {
     this.farm = farm
   }
 
-  // if cow is hungry, yield less milk
-  yieldMilk() {
-    let amountOfMilkToYield = 5 - this.hunger
-    this.farm.milk.total += Math.abs(amountOfMilkToYield)
+  // if chicken is hungry, lay less eggs
+  yieldEggs() {
+    let amountOfEggsToYield = 5 - this.hunger
+    this.farm.eggs.total += Math.abs(amountOfEggsToYield)
     this.hunger = 5
   }
 
-  // if cow is thin, yield less beef
-  yieldBeef(): number {
+  // if chicken is thin, yield less chicken
+  yieldChicken(): number {
     return this.hunger > 0 ? 100 / this.hunger : 120
   }
 
-  eatStraw() {
+  eatCorn() {
     if (this.hunger <= 5 && this.hunger !== 0) {
-      if (this.farm.straw.total > 0) {
-        this.farm.straw.total--
+      if (this.farm.corn.total > 0) {
+        this.farm.corn.total--
         this.hunger = this.hunger - 1
       } else {
         if (this.hunger < 5) {
@@ -46,16 +46,16 @@ class Cow extends Animal {
   }
 
   makeSound() {
-    return "Moooo"
+    return "Bawkity"
   }
 
   public draw(): any {
 
     this.constrainItem()
-    this.doSomethingOccasionally(() => this.eatStraw())
+    this.doSomethingOccasionally(() => this.eatCorn())
     this.stopForFarmer()
 
   }
 }
 
-export default Cow
+export default Chicken

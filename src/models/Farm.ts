@@ -1,6 +1,7 @@
 import Drawable from "./abstract/Drawable"
 import Field from "./Field"
 import Cow from "./animals/Cow"
+
 class Farm extends Drawable {
   fields: Field[] = []
   width: number = 700
@@ -11,6 +12,12 @@ class Farm extends Drawable {
   straw: any
   milk: any
   seeds: any
+  wool: any
+  eggs: any
+  corn: any
+  bread: any
+  solarPanels: any
+
   constructor(
     cows: any = {
       name: "Cows",
@@ -37,6 +44,16 @@ class Farm extends Drawable {
       total: 0,
       unit: "pints"
     },
+    eggs: any = {
+      name: "Eggs",
+      total: 0,
+      unit: "egg"
+    },
+    wool: any = {
+      name: "Wool",
+      total: 0,
+      unit: "staple"
+    },
     seeds: any = {
       name: "Grass seeds",
       total: 0,
@@ -50,6 +67,8 @@ class Farm extends Drawable {
     this.straw = straw
     this.milk = milk
     this.seeds = seeds
+    this.eggs = eggs
+    this.wool = wool
   }
 
   public preload() {
@@ -80,7 +99,9 @@ class Farm extends Drawable {
         firstFieldY,
         firstFieldW,
         firstFieldH,
-        this.cows.objects
+        this.cows.objects,
+        this.cows.name,
+        []
       )
     )
     this.fields.push(new Field(25, 275, 350, 125))

@@ -1,28 +1,30 @@
 import Animal from "../abstract/Animal"
 import Farm from "../Farm";
 
-class Cow extends Animal {
-  name: string = "Cow"
-  genus: string = "Cows"
-  imgUrl: string = "/img/twtr/1f404.png"
+class Sheep extends Animal {
+  name: string = "Sheep"
+  genus: string = "Sheepuses"
+  imgUrl: string = "/img/twtr/1f410.png"
   eats: string = "straw"
   hunger: number = 5
   farm: Farm
+  timeHungry: number = 0
+  alive: boolean = true
 
   constructor(farm: Farm) {
     super()
     this.farm = farm
   }
 
-  // if cow is hungry, yield less milk
-  yieldMilk() {
-    let amountOfMilkToYield = 5 - this.hunger
-    this.farm.milk.total += Math.abs(amountOfMilkToYield)
+  // if sheep is hungry, yield less wool
+  yieldWool() {
+    let amountOfWoolToYield = 5 - this.hunger
+    this.farm.wool.total += Math.abs(amountOfWoolToYield)
     this.hunger = 5
   }
 
-  // if cow is thin, yield less beef
-  yieldBeef(): number {
+  // if sheep is thin, yield less lamb
+  yieldLamb(): number {
     return this.hunger > 0 ? 100 / this.hunger : 120
   }
 
@@ -46,7 +48,7 @@ class Cow extends Animal {
   }
 
   makeSound() {
-    return "Moooo"
+    return "Meep."
   }
 
   public draw(): any {
@@ -54,8 +56,16 @@ class Cow extends Animal {
     this.constrainItem()
     this.doSomethingOccasionally(() => this.eatStraw())
     this.stopForFarmer()
-
+    if(this.hunger === 5 && this.timeHungry !== 0){
+      this.timeHungry = this.p5.millis()
+    }
+    if(this.p5.millis() - this.timeHungry >= 3 * 60 * 1000 && this.timeHungry !== 0){
+      this.alive = false
+    }
+    if(this.hunger < 5){
+      this.timeHungry = 0
+    }
   }
 }
 
-export default Cow
+export default Sheep

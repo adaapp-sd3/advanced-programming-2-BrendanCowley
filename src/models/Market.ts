@@ -4,20 +4,25 @@ import Farmer from './Farmer';
 class Market extends Drawable {
   imgUrl = "/img/twtr/1f3e2.png"
   currentFarmer!: Farmer
-  
+
   greenGasDemand: number = 100
   milkDemand: number = 75
   beefDemand: number = 75
 
   milkPrice: number = 1
+  eggPrice: number = 1
+  woolPrice: number = 5
   beefPrice: number = 25
+  chickenPrice: number = 15
+  lambPrice: number = 20
   greenGasPrice: number = 10
-  
+
 
   solarPanelPrice: number = 10000
 
   grassSeedPrice: number = 1
 
+  landPrice: number = 100000
 
   constructor() {
     super()

@@ -7,7 +7,7 @@ class FarmManager extends Component {
   render() {
     return (
       <div className="FarmManager">
-        
+
         {this.props.farmer.showUI && (
           <FarmerDashboard farmer={this.props.farmer} />
         )}
