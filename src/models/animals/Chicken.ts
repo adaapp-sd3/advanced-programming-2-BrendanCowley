@@ -4,7 +4,7 @@ import Farm from "../Farm";
 class Chicken extends Animal {
   name: string = "Chicken"
   genus: string = "Chickenii"
-  imgUrl: string = "/img/twtr/1f404.png"
+  imgUrl: string = "/img/twtr/1f413.png"
   eats: string = "corn"
   hunger: number = 5
   farm: Farm
@@ -43,16 +43,28 @@ class Chicken extends Animal {
 
   public preload() {
     this.p5Img = this.p5.loadImage(this.imgUrl)
-    console.log(this.p5Img)
   }
 
   makeSound() {
     return "Bawkity"
   }
 
+  checkIfDead() {
+    if(this.hunger === 5 && this.timeHungry === 0){
+      this.timeHungry = this.p5.millis()
+    }
+    if(this.p5.millis() - this.timeHungry >= 3 * 60 * 1000 && this.timeHungry !== 0){
+      this.farm.chickens.objects.pop()
+      this.farm.chickens.total -= 1
+    }
+    if(this.hunger < 5){
+      this.timeHungry = 0
+    }
+  }
+
   public draw(): any {
 
-    this.checkIfDead(this.hunger)
+    this.checkIfDead()
     this.constrainItem()
     this.doSomethingOccasionally(() => this.eatCorn())
     this.stopForFarmer()

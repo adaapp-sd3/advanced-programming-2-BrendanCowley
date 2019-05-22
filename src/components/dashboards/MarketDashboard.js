@@ -7,35 +7,30 @@ class MarketDashboard extends Component {
     if (item === "seeds") {
       if(this.props.currentFarmer.budget >= this.props.market.grassSeedPrice) {
         this.props.market.currentFarmer.myFarm.seeds.total += 1
-        console.log(this.props.market.currentFarmer.myFarm.seeds)
         this.props.market.currentFarmer.budget -= this.props.market.grassSeedPrice
       }
     }
     if (item === "solar panel") {
       if(this.props.currentFarmer.budget >= this.props.market.solarPanelPrice) {
         this.props.market.currentFarmer.myFarm.solarPanels.total += 1
-        console.log(this.props.market.currentFarmer.myFarm.solarPanels)
         this.props.market.currentFarmer.budget -= this.props.market.solarPanelPrice
       }
     }
     if (item === "land") {
       if(this.props.currentFarmer.budget >= this.props.market.landPrice) {
         this.props.market.currentFarmer.myFarm.availableLand.total += 1
-        console.log(this.props.market.currentFarmer.myFarm.availableLand)
         this.props.market.currentFarmer.budget -= this.props.market.landPrice
       }
     }
     if (item === "green gas equipment") {
       if(this.props.currentFarmer.budget >= this.props.market.greenGasEquipmentPrice) {
         this.props.market.currentFarmer.myFarm.greenGasEquipment.total += 1
-        console.log(this.props.market.currentFarmer.myFarm.greenGasEquipment)
         this.props.market.currentFarmer.budget -= this.props.market.greenGasEquipmentPrice
       }
     }
     if (item === "petting farm equipment") {
       if(this.props.currentFarmer.budget >= this.props.market.pettingFarmEquipmentPrice) {
         this.props.market.currentFarmer.myFarm.pettingFarmEquipment.total += 1
-        console.log(this.props.market.currentFarmer.myFarm.pettingFarmEquipment)
         this.props.market.currentFarmer.budget -= this.props.market.pettingFarmEquipmentPrice
       }
     }
@@ -46,43 +41,36 @@ class MarketDashboard extends Component {
       this.props.market.currentFarmer.budget +=
         this.props.market.currentFarmer.myFarm.milk.total *
         this.props.market.milkPrice
-      console.log(this.props.market.currentFarmer.myFarm.milk)
       this.props.market.currentFarmer.myFarm.milk.total = 0
     }
     if (item === "beef") {
       this.props.market.currentFarmer.budget += this.props.market.beefPrice
-      console.log(this.props.market.currentFarmer.myFarm.cows)
       this.props.market.currentFarmer.myFarm.cows.total -= 1
     }
     if (item === "egg") {
       this.props.market.currentFarmer.budget +=
         this.props.market.currentFarmer.myFarm.eggs.total *
         this.props.market.eggPrice
-      console.log(this.props.market.currentFarmer.myFarm.eggs)
       this.props.market.currentFarmer.myFarm.eggs.total = 0
     }
     if (item === "chicken") {
       this.props.market.currentFarmer.budget += this.props.market.chickenPrice
-      console.log(this.props.market.currentFarmer.myFarm.chickens)
       this.props.market.currentFarmer.myFarm.chickens.total -= 1
     }
     if (item === "wool") {
       this.props.market.currentFarmer.budget +=
         this.props.market.currentFarmer.myFarm.wool.total *
         this.props.market.woolPrice
-      console.log(this.props.market.currentFarmer.myFarm.wool)
       this.props.market.currentFarmer.myFarm.wool.total = 0
     }
     if (item === "lamb") {
       this.props.market.currentFarmer.budget += this.props.market.lambPrice
-      console.log(this.props.market.currentFarmer.myFarm.sheep)
       this.props.market.currentFarmer.myFarm.sheep.total -= 1
     }
     if (item === "green gas") {
       this.props.market.currentFarmer.budget +=
         this.props.market.currentFarmer.myFarm.greenGas.total *
         this.props.market.greenGasPrice
-      console.log(this.props.market.currentFarmer.myFarm.greenGas)
       this.props.market.currentFarmer.myFarm.greenGas.total = 0
     }
   }

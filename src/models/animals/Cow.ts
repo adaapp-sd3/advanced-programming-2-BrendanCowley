@@ -43,16 +43,28 @@ class Cow extends Animal {
 
   public preload() {
     this.p5Img = this.p5.loadImage(this.imgUrl)
-    console.log(this.p5Img)
   }
 
   makeSound() {
     return "Moooo"
   }
 
+  checkIfDead() {
+    if(this.hunger === 5 && this.timeHungry === 0){
+      this.timeHungry = this.p5.millis()
+    }
+    if(this.p5.millis() - this.timeHungry >= (3 * 60 * 1000) && this.timeHungry !== 0){
+      this.farm.cows.objects.pop()
+      this.farm.cows.total -= 1
+    }
+    if(this.hunger < 5){
+      this.timeHungry = 0
+    }
+  }
+
   public draw(): any {
 
-    this.checkIfDead(this.hunger)
+    this.checkIfDead()
     this.constrainItem()
     this.doSomethingOccasionally(() => this.eatStraw())
     this.stopForFarmer()

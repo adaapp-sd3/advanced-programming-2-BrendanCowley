@@ -8,6 +8,17 @@ class FieldDashboard extends Component {
     }
   }
 
+  plantWheat = () => {
+    this.props.field.plant(this.props.farmer.myFarm)
+  }
+
+  makeBread = () => {
+    for (var i=0; i<this.props.field.contents.length; i++) {
+      this.props.field.contents[i].yieldBread()
+    }
+    this.props.field.contents = []
+  }
+
   render() {
     return (
       <div className="FieldDashboard">
@@ -20,8 +31,17 @@ class FieldDashboard extends Component {
               <button onClick={this.milkCows}>Milk them</button>
             )}
           </p>
-          
+
         )}
+        {this.props.field.name === "Wheat" &&
+          (<p>
+            <button onClick={this.plantWheat}>Plant wheat</button>
+            {this.props.field.contents[0] && (
+              <button onClick={this.makeBread}>Make Bread</button>
+            )}
+          </p>
+          )
+        }
         {this.props.field.contents.map((item, i) => (
           <>
             {item.showUI && (

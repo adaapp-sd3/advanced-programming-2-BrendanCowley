@@ -12,7 +12,7 @@ class FarmManager extends Component {
           <FarmerDashboard farmer={this.props.farmer} />
         )}
         {this.props.farm.fields.map((field,i) => (
-          <>{field.showUI && <FieldDashboard key={i} field={field} />}</>
+          <>{field.showUI && <FieldDashboard key={i} field={field} farmer={this.props.farmer}/>}</>
         ))}
         {this.props.market.showUI && (
           <MarketDashboard market={this.props.market} />

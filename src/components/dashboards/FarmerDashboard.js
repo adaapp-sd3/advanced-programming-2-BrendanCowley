@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 class FarmerDashboard extends Component {
 
   state = {
-    weather: {main:{temp: ''}}
+    weather: {
+      weather:[{description: ''}],
+      main:{temp: ''}
+    }
   }
 
   hideUI = () => {
@@ -19,7 +22,7 @@ class FarmerDashboard extends Component {
   }
 
   componentWillMount() {
-    console.log(this.getWeather())
+    this.getWeather()
   }
 
   render() {
@@ -36,6 +39,7 @@ class FarmerDashboard extends Component {
             <dt>Total milk</dt><dd>{this.props.farmer.myFarm.milk.total} pints</dd>
             <dt>Total seeds</dt><dd>{this.props.farmer.myFarm.seeds.total} bunches</dd>
             <dt>Temperature</dt><dd>{(this.state.weather.main.temp - 273.15).toFixed(1) + '° C'}</dd>
+            <dt>Conditions</dt><dd>{this.state.weather.weather[0].description}</dd>
             </>
           )}
         </dl>

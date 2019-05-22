@@ -27,7 +27,7 @@ class Field extends Drawable {
     this.y = yPos
     this.contents = initalContents
     this.name = name
-    this.crops = []
+    this.crops = crops
   }
 
   public draw() {
@@ -49,22 +49,8 @@ class Field extends Drawable {
     this.isGreenGasPlant = true
   }
 
-  plant(x: number, y: number, farm: any) {
-    console.log("new plant")
-    // Get the crop name from the field name
-    // var cropName = this.name.split(" ") // => e.g. "Wheat"
-    let cropName = this.name.split(" ")
-    // // Add a new crop to the field's list of crops
-    // this.crops.push(new Crop(cropName[0], this, x, y))
-    if(cropName[0] === "Wheat"){
-      this.crops.push(new Wheat(farm))
-    }
-    if(cropName[0] === "Corn"){
-      this.crops.push(new Corn(farm))
-    }
-    if(cropName[0] === "Grass"){
-      this.crops.push(new Grass(farm))
-    }
+  plant(farm: any) {
+    farm.plantWheat()
   }
 }
 
